@@ -21,7 +21,7 @@ public class Gmail extends Email {
     }
 
     public void receiveMail(Date date, String sender, String message){
-        if(Inbox.size()>inboxCapacity)
+        if(Inbox.size()==inboxCapacity)
         {
             Trash.add(Inbox.getFirst());
             Inbox.removeFirst();
