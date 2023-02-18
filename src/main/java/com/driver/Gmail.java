@@ -45,6 +45,7 @@ public class Gmail extends Email {
            if(temp.getMessage().equals(message))
            {
                Trash.add(temp);
+               Inbox.remove(temp);
            }
        }
 
