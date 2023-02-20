@@ -33,20 +33,30 @@ public class Workspace extends Gmail{
        Collections.sort(calendar, new Comparator<Meeting>() {
            @Override
            public int compare(Meeting o1, Meeting o2) {
-               if(o1.getEndTime().compareTo(o2.getEndTime())>=0)
-               {
-                   return -1;
-               }
-               else if(o1.getEndTime().compareTo(o2.getEndTime())<=0)
+               if(o1.getEndTime().compareTo(o2.getEndTime())>0)
                {
                    return 1;
+               }
+               else if(o1.getEndTime().compareTo(o2.getEndTime())<0)
+               {
+                   return -1;
                }
 
                return 0;
            }
        });
+       int count =1;
+       LocalTime end = calendar.get(0).getEndTime();
+       for(int i=1;i<calendar.size();i++)
+       {
+           if(calendar.get(i).getStartTime().compareTo(end)>0)
+           {
+               count++;
+               end = calendar.get(i).getEndTime();
+           }
+       }
 
-       return 0;
+       return count;
 
     }
 }
